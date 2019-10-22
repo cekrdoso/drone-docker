@@ -21,8 +21,8 @@ steps:
     dockerfile: docker/Dockerfile.linux.amd64
     password:
       $secret: password
-    repo: drone/docker
-    username: drone
+    repo: cekrdoso/drone-docker
+    username: cekrdoso
   when:
     event:
     - push
@@ -51,8 +51,8 @@ steps:
     dockerfile: docker/Dockerfile.linux.arm64
     password:
       $secret: password
-    repo: drone/docker
-    username: drone
+    repo: cekrdoso/drone-docker
+    username: cekrdoso
   when:
     event:
     - push
@@ -81,8 +81,8 @@ steps:
     dockerfile: docker/Dockerfile.linux.arm
     password:
       $secret: password
-    repo: drone/docker
-    username: drone
+    repo: cekrdoso/drone-docker
+    username: cekrdoso
   when:
     event:
     - push
@@ -119,7 +119,7 @@ depends_on:
 kind: secret
 type: external
 data:
-  password: "drone/docker#password"
-  username: "drone/docker#username"
+  password: "cekrdoso/drone-docker#password"
+  username: "cekrdoso/drone-docker#username"
 
 ...

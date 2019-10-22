@@ -1,3 +1,9 @@
-FROM docker:18
+FROM docker:19
 ADD release/linux/amd64/drone-docker /bin/
+
+RUN apk update \
+  && apk add \
+  openssh-client \
+  ca-certificates
+
 ENTRYPOINT ["/bin/drone-docker"]

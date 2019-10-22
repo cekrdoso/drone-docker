@@ -7,7 +7,7 @@ import (
 	"net/http/httputil"
 	"strings"
 
-	"github.com/drone/drone-docker/dockerhub"
+	"github.com/cekrdoso/drone-docker/dockerhub"
 	"github.com/genuinetools/reg/registry"
 )
 

@@ -8,4 +8,4 @@ set -e
 set -x
 
 go build -o release/linux/arm32v7/drone-docker \
-    github.com/drone/drone-docker
+    github.com/cekrdoso/drone-docker

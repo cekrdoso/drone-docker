@@ -10,7 +10,7 @@ Build the plugin binaries:
 Build the Docker images:
 
 ```
-docker build -t drone/docker -f docker/Dockerfile.linux.amd64 .
+docker build -t cekrdoso/drone-docker -f docker/Dockerfile.linux.amd64 .
 ```
 
 Build an image using a temporary tag:
@@ -28,7 +28,7 @@ docker run --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v $(pwd):$(pwd) \
   -w $(pwd) \
-  drone/docker --build
+  cekrdoso/drone-docker --build
 ```
 
 Publish and re-tag the image:
@@ -49,5 +49,5 @@ docker run --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v $(pwd):$(pwd) \
   -w $(pwd) \
-  drone/docker --login --push
+  cekrdoso/drone-docker --login --push
 ```

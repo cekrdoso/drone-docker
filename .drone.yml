@@ -19,70 +19,11 @@ steps:
     auto_tag: true
     auto_tag_suffix: linux-amd64
     dockerfile: docker/Dockerfile.linux.amd64
-    password:
-      $secret: password
     repo: cekrdoso/drone-docker
-    username: cekrdoso
-  when:
-    event:
-    - push
-    - tag
-
----
-kind: pipeline
-name: build-linux-arm64
-
-platform:
-  os: linux
-  arch: arm64
-
-steps:
-- name: build
-  image: golang:1.11
-  commands:
-  - go test -v
-  - ./scripts/build_linux_arm64.sh
-
-- name: publish
-  image: plugins/docker:linux-arm64
-  settings:
-    auto_tag: true
-    auto_tag_suffix: linux-arm64
-    dockerfile: docker/Dockerfile.linux.arm64
+    username:
+      from_secret: docker_username
     password:
-      $secret: password
-    repo: cekrdoso/drone-docker
-    username: cekrdoso
-  when:
-    event:
-    - push
-    - tag
-
----
-kind: pipeline
-name: build-linux-arm
-
-platform:
-  os: linux
-  arch: arm
-
-steps:
-- name: build
-  image: golang:1.11
-  commands:
-  - go test -v
-  - ./scripts/build_linux_arm.sh
-
-- name: publish
-  image: plugins/docker:linux-arm
-  settings:
-    auto_tag: true
-    auto_tag_suffix: linux-arm
-    dockerfile: docker/Dockerfile.linux.arm
-    password:
-      $secret: password
-    repo: cekrdoso/drone-docker
-    username: cekrdoso
+      from_secret: docker_password
   when:
     event:
     - push
@@ -101,25 +42,14 @@ steps:
   image: plugins/manifest:1
   settings:
     ignore_missing: true
-    password:
-      $secret: password
     spec: docker/manifest.tmpl
     username:
-      $secret: username
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
   when:
     event:
     - push
 
 depends_on:
-- build-linux-arm
-- build-linux-arm64
 - build-linux-amd64
-
----
-kind: secret
-type: external
-data:
-  password: "cekrdoso/drone-docker#password"
-  username: "cekrdoso/drone-docker#username"
-
-...

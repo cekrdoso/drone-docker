@@ -11,13 +11,3 @@ manifests:
     platform:
       architecture: amd64
       os: linux
-  -
-    image: cekrdoso/drone-docker:{{#if build.tag}}{{trimPrefix build.tag "v"}}-{{/if}}linux-arm64
-    platform:
-      architecture: arm64
-      os: linux
-  -
-    image: cekrdoso/drone-docker:{{#if build.tag}}{{trimPrefix build.tag "v"}}-{{/if}}linux-arm
-    platform:
-      architecture: arm
-      os: linux
